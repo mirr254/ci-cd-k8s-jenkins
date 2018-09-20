@@ -29,7 +29,7 @@ resource "aws_vpc_dhcp_options_association" "dns_resolver" {
 }
 
 ##########
-# Keypair
+# Keypair for authentication of terraform when creating instances
 ##########
 
 resource "aws_key_pair" "default_keypair" {
@@ -54,7 +54,7 @@ resource "aws_subnet" "kubernetes" {
   }
 }
 
-resource "aws_internet_gateway" "gw" {
+resource "aws_internet_gateway" "k8s-gw" {
   vpc_id = "${aws_vpc.kubernetes.id}"
   tags {
     Name = "kubernetes"
@@ -63,7 +63,7 @@ resource "aws_internet_gateway" "gw" {
 }
 
 ############
-## Routing
+## Routing all traffic to the internet gsteway to make it accessible
 ############
 
 resource "aws_route_table" "kubernetes" {
@@ -72,7 +72,7 @@ resource "aws_route_table" "kubernetes" {
     # Default route through Internet Gateway
     route {
       cidr_block = "0.0.0.0/0"
-      gateway_id = "${aws_internet_gateway.gw.id}"
+      gateway_id = "${aws_internet_gateway.k8s-gw.id}"
     }
 
     tags {
