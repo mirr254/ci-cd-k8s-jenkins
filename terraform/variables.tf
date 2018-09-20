@@ -52,6 +52,7 @@ variable kubernetes_pod_cidr {
 
 
 # Instances Setup
+# differnt region has different AMIs ids
 variable amis {
   description = "Default AMIs to use for nodes depending on the region"
   type = "map"
