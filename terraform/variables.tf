@@ -23,7 +23,7 @@ variable elb_name {
 }
 
 variable owner {
-  default = "Kubernetes"
+  default = "shammir"
 }
 
 variable ansibleFilter {
