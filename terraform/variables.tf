@@ -1,5 +1,6 @@
 variable control_cidr {
   description = "CIDR for maintenance: inbound traffic will be allowed from this IPs"
+  default = "10.43.0.0/16"
 }
 
 variable default_keypair_public_key {
@@ -23,7 +24,7 @@ variable elb_name {
 }
 
 variable owner {
-  default = "Kubernetes"
+  default = "shammir"
 }
 
 variable ansibleFilter {
@@ -52,6 +53,7 @@ variable kubernetes_pod_cidr {
 
 
 # Instances Setup
+# different regions has different AMI ids
 variable amis {
   description = "Default AMIs to use for nodes depending on the region"
   type = "map"
