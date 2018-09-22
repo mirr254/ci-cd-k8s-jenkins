@@ -1,5 +1,6 @@
 variable control_cidr {
   description = "CIDR for maintenance: inbound traffic will be allowed from this IPs"
+  default = "10.43.0.0/16"
 }
 
 variable default_keypair_public_key {
